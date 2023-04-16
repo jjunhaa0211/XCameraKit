@@ -17,11 +17,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        cameraView = XCamera(frame: view.bounds)
+        view.addSubview(cameraView)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        cameraView.startRunning()
     }
 
     override func didReceiveMemoryWarning() {
