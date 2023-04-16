@@ -20,23 +20,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYe-6d-WGV" customClass="XCamera" customModule="XCameraKit">
-                                <rect key="frame" x="70" y="147" width="250" height="250"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Csm-9w-uco" customClass="XCamera" customModule="XCameraKit">
+                                <rect key="frame" x="-0.5" y="-0.5" width="376" height="668"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="6eB-za-Xds"/>
-                                    <constraint firstAttribute="height" constant="250" id="Bq2-jK-TV4"/>
+                                    <constraint firstAttribute="height" constant="668" id="5ws-if-9J1"/>
+                                    <constraint firstAttribute="width" constant="376" id="gHT-JS-Ll2"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="GYe-6d-WGV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="70" id="4EJ-i0-gNt"/>
-                            <constraint firstItem="GYe-6d-WGV" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="127" id="tfj-OG-3AM"/>
+                            <constraint firstItem="Csm-9w-uco" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="NEZ-vb-MIl"/>
+                            <constraint firstItem="Csm-9w-uco" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="cPu-MV-h28"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cameraView" destination="GYe-6d-WGV" id="v6l-gh-Ymk"/>
+                        <outlet property="cameraView" destination="Csm-9w-uco" id="8OZ-oO-hSE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

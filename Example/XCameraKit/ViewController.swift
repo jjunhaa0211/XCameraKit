@@ -17,14 +17,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        cameraView = XCamera(frame: view.bounds)
         view.addSubview(cameraView)
+        cameraView.setAspectRatio(.square)
+
+//        cameraView.translatesAutoresizingMaskIntoConstraints = false
+//        cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        cameraView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//        cameraView.widthAnchor.constraint(equalTo: cameraView.heightAnchor).isActive = true
+        
+        cameraView.startRunning()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        cameraView.startRunning()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,4 +40,3 @@ class ViewController: UIViewController {
     }
 
 }
-
