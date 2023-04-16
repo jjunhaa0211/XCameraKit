@@ -28,9 +28,12 @@ open class XCamera: UIView {
         commonInit()
     }
     
-    private func commonInit() {
+    open func setBackgroundColor(_ color: UIColor = .black) {
         // background color
-        backgroundColor = .red
+        backgroundColor = color
+    }
+    
+    private func commonInit() {
 
         // AVCaptureDevice
         let cameraDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back)

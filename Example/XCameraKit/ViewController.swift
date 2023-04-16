@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         
         view.addSubview(cameraView)
         cameraView.setAspectRatio(.square)
+        cameraView.setBackgroundColor()
 
 //        cameraView.translatesAutoresizingMaskIntoConstraints = false
 //        cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
