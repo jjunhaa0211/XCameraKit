@@ -12,16 +12,18 @@ import XCameraKit
 class ViewController: UIViewController {
     
     @IBOutlet var cameraView: XCamera!
+    @IBOutlet var captureButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         view.addSubview(cameraView)
-        cameraView.setAspectRatio(.full)
+        cameraView.setAspectRatio(.square)
         cameraView.setBackgroundColor(.black)
         cameraView.setFlashMode(.off)
-        cameraView.setCameraPosition(.front)
+        cameraView.setCameraPosition(.back)
+
 
 //        cameraView.translatesAutoresizingMaskIntoConstraints = false
 //        cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -31,7 +33,7 @@ class ViewController: UIViewController {
         cameraView.startRunning()
 
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -41,5 +43,8 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    @IBAction func ButtonDidTap(_ sender: Any) {
+        print("asdf")
+    }
+    
 }

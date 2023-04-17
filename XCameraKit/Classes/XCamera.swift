@@ -1,6 +1,7 @@
 import UIKit
 import Foundation
 import AVFoundation
+import Photos
 
 public enum CameraAspectRatio {
     case square // 1 : 1
@@ -55,7 +56,9 @@ open class XCamera: UIView {
             captureSession.commitConfiguration()
         }
     }
-        
+    
+    let photoOutput = AVCapturePhotoOutput()
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -181,4 +184,5 @@ open class XCamera: UIView {
     open func setCameraPosition(_ position: CameraPosition) {
         cameraPosition = position
     }
+    
 }
