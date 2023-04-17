@@ -17,6 +17,8 @@ open class XCamera: UIView {
     var previewLayer: AVCaptureVideoPreviewLayer!
     var aspectRatio: CameraAspectRatio = .full
     
+    var flashMode: AVCaptureDevice.FlashMode = .off
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -28,6 +30,10 @@ open class XCamera: UIView {
         commonInit()
     }
     
+    ///You can set the background color of the camera.
+    /// Camera BackgroundColor
+    /// - Parameters:
+    ///   - color: UIColor
     open func setBackgroundColor(_ color: UIColor = .black) {
         // background color
         backgroundColor = color
@@ -100,5 +106,22 @@ open class XCamera: UIView {
     open func setAspectRatio(_ aspectRatio: CameraAspectRatio) {
         self.aspectRatio = aspectRatio
         setNeedsLayout()
+    }
+    
+    open func setFlashMode(_ mode: AVCaptureDevice.FlashMode) {
+        guard let device = cameraDevice else {
+            return
+        }
+        guard device.hasFlash else {
+            return
+        }
+        do {
+            try device.lockForConfiguration()
+            let photoSettings = AVCapturePhotoSettings()
+            photoSettings.flashMode = mode
+            device.unlockForConfiguration()
+        } catch {
+            print("Error setting flash mode: \(error.localizedDescription)")
+        }
     }
 }
