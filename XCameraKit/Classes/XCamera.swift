@@ -9,6 +9,11 @@ public enum CameraAspectRatio {
     case landscape // width 16 : 9
 }
 
+public enum CameraPosition {
+    case front
+    case back
+}
+
 open class XCamera: UIView {
     
     let captureSession = AVCaptureSession()
@@ -19,6 +24,34 @@ open class XCamera: UIView {
     
     var flashMode: AVCaptureDevice.FlashMode = .off
     
+    var cameraPosition: CameraPosition = .back {
+        didSet {
+            guard let currentInput = cameraInput else {
+                return
+            }
+            captureSession.beginConfiguration()
+            captureSession.removeInput(currentInput)
+            
+            let newPosition: AVCaptureDevice.Position = (cameraPosition == .back) ? .back : .front
+            let newCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: newPosition)
+            do {
+                let newInput = try AVCaptureDeviceInput(device: newCameraDevice!)
+                if captureSession.canAddInput(newInput) {
+                    captureSession.addInput(newInput)
+                    cameraInput = newInput
+                    cameraDevice = newCameraDevice
+                } else {
+                    captureSession.addInput(currentInput)
+                }
+            } catch {
+                captureSession.addInput(currentInput)
+                print("Error creating AVCaptureDeviceInput: \(error.localizedDescription)")
+            }
+            
+            captureSession.commitConfiguration()
+        }
+    }
+        
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -40,12 +73,12 @@ open class XCamera: UIView {
     }
     
     private func commonInit() {
-
+        
         // AVCaptureDevice
         let cameraDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back)
-
+        
         cameraDevice = cameraDeviceDiscoverySession.devices.first
-
+        
         // make AVCaptureDeviceInput
         do {
             cameraInput = try AVCaptureDeviceInput(device: cameraDevice)
@@ -53,16 +86,16 @@ open class XCamera: UIView {
             print("Error creating AVCaptureDeviceInput: \(error.localizedDescription)")
             return
         }
-
+        
         // make AVCaptureVideoPreviewLayer
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.videoGravity = .resizeAspectFill
         layer.addSublayer(previewLayer)
     }
-
+    
     public override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         // AVCaptureVideoPreviewLayer frame == XCamera UIview bounds
         previewLayer.frame = bounds
         
@@ -77,7 +110,7 @@ open class XCamera: UIView {
         case .landscape:
             size = CGSize(width: bounds.width, height: bounds.width * 3 / 4)
         }
-
+        
         let previewLayerFrame = CGRect(origin: .zero, size: size)
         previewLayer.frame = previewLayerFrame
         previewLayer.position = CGPoint(x: bounds.width / 2, y: bounds.maxY / 2)
@@ -123,5 +156,9 @@ open class XCamera: UIView {
         } catch {
             print("Error setting flash mode: \(error.localizedDescription)")
         }
+    }
+    
+    open func setCameraPosition(_ position: CameraPosition) {
+        cameraPosition = position
     }
 }

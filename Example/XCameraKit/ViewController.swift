@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         cameraView.setAspectRatio(.square)
         cameraView.setBackgroundColor(.black)
         cameraView.setFlashMode(.on)
+        cameraView.setCameraPosition(.back)
 
 //        cameraView.translatesAutoresizingMaskIntoConstraints = false
 //        cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
