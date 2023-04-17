@@ -18,10 +18,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         view.addSubview(cameraView)
-        cameraView.setAspectRatio(.square)
+        cameraView.setAspectRatio(.full)
         cameraView.setBackgroundColor(.black)
-        cameraView.setFlashMode(.on)
-        cameraView.setCameraPosition(.back)
+        cameraView.setFlashMode(.off)
+        cameraView.setCameraPosition(.front)
 
 //        cameraView.translatesAutoresizingMaskIntoConstraints = false
 //        cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
