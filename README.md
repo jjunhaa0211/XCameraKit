@@ -24,12 +24,22 @@
 Getting Started
 -----------
 
-##XCamera
+### XCamera
 
 - **How to declare camera code**:
 
     ```swift
     var cameraView: XCamera!
+    ```
+    
+- **How to use the camera aspect ratio**:
+
+    ```swift
+    cameraView.setAspectRatio() // Defulat fullScreen
+    cameraView.setAspectRatio(.square) //square 1 : 1
+    cameraView.setAspectRatio(.full) //fullScreen UIView bounds
+    cameraView.setAspectRatio(.portrait) // lengthScreen 16 : 9 
+    cameraView.setAspectRatio(.landscape) // landscapeScreen 16 : 9
     ```
 
 ## Author
