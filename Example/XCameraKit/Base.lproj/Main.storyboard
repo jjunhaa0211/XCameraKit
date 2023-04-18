@@ -49,6 +49,7 @@
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="Csm-9w-uco" id="8OZ-oO-hSE"/>
+                        <outlet property="captureButton" destination="Fbp-Cq-72j" id="T7H-LN-iM6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

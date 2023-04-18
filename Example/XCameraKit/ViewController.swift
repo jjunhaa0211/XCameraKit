@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         cameraView.setAspectRatio(.square)
         cameraView.setBackgroundColor(.black)
         cameraView.setFlashMode(.off)
-        cameraView.setCameraPosition(.back)
+        cameraView.setCameraPosition(.front)
 
 
 //        cameraView.translatesAutoresizingMaskIntoConstraints = false
@@ -43,8 +43,17 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func ButtonDidTap(_ sender: Any) {
         print("asdf")
+        cameraView.takePhoto { reulst in
+            switch reulst {
+            case .success(let image):
+                print("200 \(image)")
+            case .failure(let error):
+                print("400 \(error)")
+            }
+        }
     }
     
 }
