@@ -41,6 +41,18 @@ Getting Started
     cameraView.setAspectRatio(.portrait) // lengthScreen 16 : 9 
     cameraView.setAspectRatio(.landscape) // landscapeScreen 16 : 9
     ```
+    
+- **Set the background color of the camera.**:
+
+    ```swift
+    cameraView.setBackgroundColor(.black) //UIColor
+    ```
+ 
+- **Turn the camera's flash off and on.**:
+
+    ```swift
+    cameraView.setFlashMode(.off)
+    ```
 
 ## Author
 
