@@ -1,3 +1,5 @@
+![XCameraKitLogo](https://user-images.githubusercontent.com/102890390/232702695-52b2079f-379d-48f1-8b04-702c48306357.png)
+
 # XCameraKit
 
 [![CI Status](https://img.shields.io/travis/102890390/XCameraKit.svg?style=flat)](https://travis-ci.org/102890390/XCameraKit)
