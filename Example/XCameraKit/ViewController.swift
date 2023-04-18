@@ -46,14 +46,6 @@ class ViewController: UIViewController {
     
     @IBAction func ButtonDidTap(_ sender: Any) {
         print("asdf")
-        cameraView.takePhoto { reulst in
-            switch reulst {
-            case .success(let image):
-                print("200 \(image)")
-            case .failure(let error):
-                print("400 \(error)")
-            }
-        }
     }
     
 }

@@ -192,25 +192,4 @@ open class XCamera: UIView {
     open func setCameraPosition(_ position: CameraPosition) {
         cameraPosition = position
     }
-
-    open func takePhoto(completion: @escaping (Result<UIImage, Error>) -> Void) {
-        guard let connection = stillImageOutput.connection(with: .video) else {
-            completion(.failure(CameraError.captureStillImageOutput))
-            return
-        }
-        connection.videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue) ?? .portrait
-
-        stillImageOutput.captureStillImageAsynchronously(from: connection) { (imageDataSampleBuffer, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            guard let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer!) else {
-                completion(.failure(CameraError.imageData))
-                return
-            }
-            let image = UIImage(data: imageData)
-            completion(.success(image!))
-        }
-    }
 }
