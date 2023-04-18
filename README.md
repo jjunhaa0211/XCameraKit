@@ -52,7 +52,7 @@ Getting Started
 
     ```swift
     // Turn on to turn on the flash and turn off to turn off the flash. 
-    cameraView.setFlashMode(.off) Default is off.
+    cameraView.setFlashMode(.off) // Default is off.
     ```
 
 ## Author
