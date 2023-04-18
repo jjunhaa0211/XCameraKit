@@ -23,6 +23,9 @@ class ViewController: UIViewController {
         cameraView.setBackgroundColor(.black)
         cameraView.setFlashMode(.off)
         cameraView.setCameraPosition(.front)
+        cameraView.setCameraCornerRadius(100.0)
+        
+//        cameraView.layer.cornerRadius = 20
 
 
 //        cameraView.translatesAutoresizingMaskIntoConstraints = false

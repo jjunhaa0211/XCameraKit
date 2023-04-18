@@ -192,4 +192,13 @@ open class XCamera: UIView {
     open func setCameraPosition(_ position: CameraPosition) {
         cameraPosition = position
     }
+    
+    ///Set corner radius of the camera layer
+    /// - Parameters:
+    ///   - radius: The radius to use when drawing rounded corners for the layer.
+    open func setCameraCornerRadius(_ radius: CGFloat) {
+        previewLayer.cornerRadius = radius
+        previewLayer.masksToBounds = true
+    }
+    
 }
