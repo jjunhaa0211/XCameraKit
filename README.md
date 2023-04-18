@@ -32,6 +32,18 @@ Getting Started
     var cameraView: XCamera!
     ```
     
+- **How to run the camera**:
+
+    ```swift
+    cameraView.startRunning()
+    ```
+    
+- **To stop the camera you need to do as below**:
+
+    ```swift
+    cameraView.stopRunning()
+    ```
+    
 - **How to use the camera aspect ratio**:
 
     ```swift
@@ -53,6 +65,13 @@ Getting Started
     ```swift
     // Turn on to turn on the flash and turn off to turn off the flash. 
     cameraView.setFlashMode(.off) // Default is off.
+    ```
+    
+- **How to change camera orientation**:
+
+    ```swift
+    // there is a .front and a .back
+    cameraView.setCameraPosition(.front) // Defulat back
     ```
 
 ## Author
