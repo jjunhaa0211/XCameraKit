@@ -52,6 +52,7 @@ Getting Started
     cameraView.setAspectRatio(.full) //fullScreen UIView bounds
     cameraView.setAspectRatio(.portrait) // lengthScreen 16 : 9 
     cameraView.setAspectRatio(.landscape) // landscapeScreen 16 : 9
+    cameraView.setAspectRatio(.custom(width: 1000, height: 200)) //custom
     ```
     
 - **Set the background color of the camera**:
@@ -79,7 +80,7 @@ Getting Started
     ```swift
     cameraView.setCameraCornerRadius(100.0)
     ```
-
+    
 ## Author
 
 - 🎇 Github = jjunhaa0211
