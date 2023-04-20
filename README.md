@@ -73,10 +73,23 @@ Getting Started
     // there is a .front and a .back
     cameraView.setCameraPosition(.front) // Defulat back
     ```
+    
+- **How to get the cornerRadius of the camera itself**:
+
+    ```swift
+    cameraView.setCameraCornerRadius(100.0)
+    ```
 
 ## Author
 
-102890390, goodjunha@gmail.com
+- 🎇 Github = jjunhaa0211
+- 🌄 Gmail = goodjunha@gmail.com
+- 🌆 Dm = jn_xhx
+
+## Realization
+
+- 🇺🇸 The library is constantly being updated. If you need a camera-related feature you want or find a bug, please send me an issue. 😎
+- 🇰🇷 라이브러리에는 꾸준히 업데이트되고 있습니다. 혹시 원하는 카메라관련 기능이 필요하거나 버그를 발견하셨다면 저에게 Issues를 날려주세요. 😏
 
 ## License
 
