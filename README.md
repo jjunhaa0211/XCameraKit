@@ -16,12 +16,25 @@
 - Filter-related functions (🙏 Please wait)
 - Frame-related features (🙏 Please wait)
 
-## Installation
+# Installation
 
+## CocoaPods:
 - **For iOS 14+ projects:**
 
     ```ruby
     pod 'XCameraKit'
+    ```
+    
+## Carthage: 
+- **For iOS 14+ projects:**
+    ```ruby
+    🙏 Please wait
+    ```
+
+## SPM:
+- **For iOS 14+ projects:**
+    ```ruby
+    🙏 Please wait
     ```
 
 Getting Started
