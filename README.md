@@ -79,10 +79,14 @@ Getting Started
     ```swift
     cameraView.setCameraCornerRadius(100.0)
     ```
+    
+## Realization
 
 ## Author
 
-goodjunha@gmail.com
+- 🎇 Github = jjunhaa0211
+- 🌄 Gmail = goodjunha@gmail.com
+- 🌆 Dm = jn_xhx
 
 ## License
 
