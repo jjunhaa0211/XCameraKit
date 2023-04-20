@@ -19,21 +19,21 @@
 # Installation
 
 ## CocoaPods:
-- **For iOS 14+ projects:**
+- **For iOS 14+ projects:** 😈
 
     ```ruby
     pod 'XCameraKit'
     ```
     
 ## Carthage: 
-- **For iOS 14+ projects:**
+- **For iOS 14+ projects:** 👾
 
     ```ruby
     🙏 Please wait
     ```
 
 ## SPM:
-- **For iOS 14+ projects:**
+- **For iOS 14+ projects:** 💜
 
     ```ruby
     🙏 Please wait
