@@ -7,7 +7,7 @@
 
 ## Screenshots
 
-![sdfgsdfgsdfg](https://user-images.githubusercontent.com/102890390/233329418-d0833fca-1179-4806-99ec-8e169a228f16.jpg)
+![fjkgdhsa](https://user-images.githubusercontent.com/102890390/233331775-52d6fd56-7904-4aae-9af4-11d1ef35554d.jpg)
 
 
 ## Support Function
