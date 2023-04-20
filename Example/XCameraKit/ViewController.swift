@@ -69,4 +69,17 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func ReversalDidTap(_ sender: Any) {
+        isOn.toggle()
+        
+        if isOn {
+            cameraView.setCameraPosition(.back)
+            print("back")
+        } else {
+            cameraView.setCameraPosition(.front)
+            print("front")
+        }
+    }
+    
+    
 }

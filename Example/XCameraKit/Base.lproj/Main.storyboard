@@ -78,6 +78,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.triangle.2.circlepath.camera.fill" catalog="system" id="y4f-uW-vDN">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="ReversalDidTap:" destination="vXZ-lx-hvc" id="XjW-6l-XPl"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
