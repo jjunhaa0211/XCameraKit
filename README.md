@@ -42,7 +42,7 @@
 Getting Started
 -----------
 
-### XCamera
+### XCamera 📸
 
 - **How to declare camera code**:
 
