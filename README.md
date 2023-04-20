@@ -27,12 +27,14 @@
     
 ## Carthage: 
 - **For iOS 14+ projects:**
+
     ```ruby
     🙏 Please wait
     ```
 
 ## SPM:
 - **For iOS 14+ projects:**
+
     ```ruby
     🙏 Please wait
     ```
