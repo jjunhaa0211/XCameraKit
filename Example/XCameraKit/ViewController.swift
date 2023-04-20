@@ -22,22 +22,16 @@ class ViewController: UIViewController {
         
         view.addSubview(cameraView)
 //        cameraView.setAspectRatio(.custom(width: 1000, height: 200))
-        cameraView.setAspectRatio(.full)
-        cameraView.setBackgroundColor(.black)
+        cameraView.setAspectRatio(.landscape)
+        cameraView.setBackgroundColor(.white)
         cameraView.setFlashMode(.off)
-        cameraView.setCameraPosition(.front)
+        cameraView.setCameraPosition(.back)
         
         captureButton.layer.cornerRadius = 50.0
-//        cameraView.setCameraCornerRadius(100.0)
+//        cameraView.setCameraCornerRadius(150.0)
         
         
 //        cameraView.layer.cornerRadius = 20
-
-
-//        cameraView.translatesAutoresizingMaskIntoConstraints = false
-//        cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        cameraView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//        cameraView.widthAnchor.constraint(equalTo: cameraView.heightAnchor).isActive = true
         
         cameraView.startRunning()
 
@@ -54,7 +48,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func ButtonDidTap(_ sender: Any) {
-        print("asdf")
+        print("capture")
     }
     
     @IBAction func LightButtonDidTap(_ sender: Any) {
@@ -80,6 +74,4 @@ class ViewController: UIViewController {
             print("front")
         }
     }
-    
-    
 }

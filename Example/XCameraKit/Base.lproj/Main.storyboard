@@ -37,10 +37,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FP9-sv-eln">
-                                <rect key="frame" x="165" y="795" width="101" height="53"/>
+                                <rect key="frame" x="165" y="747" width="101" height="101"/>
                                 <color key="tintColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button">
+                                <buttonConfiguration key="configuration" style="plain">
                                     <backgroundConfiguration key="background">
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </backgroundConfiguration>
@@ -61,9 +61,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Csm-9w-uco" secondAttribute="trailing" id="0kx-9e-EX5"/>
+                            <constraint firstItem="FP9-sv-eln" firstAttribute="top" secondItem="Csm-9w-uco" secondAttribute="bottom" constant="44" id="1eU-5i-A9v"/>
                             <constraint firstItem="Csm-9w-uco" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="6Y9-Io-p77"/>
                             <constraint firstItem="FP9-sv-eln" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="165" id="7xB-H9-LB9"/>
-                            <constraint firstItem="FP9-sv-eln" firstAttribute="top" secondItem="Csm-9w-uco" secondAttribute="bottom" constant="92" id="bNa-t8-Hcu"/>
                             <constraint firstItem="Csm-9w-uco" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="oL8-D6-8t9"/>
                             <constraint firstAttribute="trailing" secondItem="FP9-sv-eln" secondAttribute="trailing" constant="164" id="sdb-mX-JhT"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="FP9-sv-eln" secondAttribute="bottom" constant="50" id="yTH-2H-hbB"/>
