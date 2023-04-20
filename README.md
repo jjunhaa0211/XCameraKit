@@ -7,11 +7,11 @@
 
 ## Screenshots
 
-## Features
-- 
--
--
--
+## Support Function
+- Camera-related features 
+- Video-related features (🙏 Please wait)
+- Filter-related functions (🙏 Please wait)
+- Frame-related features (🙏 Please wait)
 
 ## Installation
 
