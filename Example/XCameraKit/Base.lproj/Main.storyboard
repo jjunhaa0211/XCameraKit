@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7MP-jh-1w5">
+    <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
@@ -8,6 +8,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="7In-3D-IWV">
+            <objects>
+                <navigationController id="7MP-jh-1w5" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GXA-ZP-Giu">
+                        <rect key="frame" x="0.0" y="59" width="430" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Swf-dd-2ae"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gue-ls-S6G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-952" y="-36"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -17,49 +33,71 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Csm-9w-uco" customClass="XCamera" customModule="XCameraKit">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="513"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="513" id="v63-Qc-q6b"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbp-Cq-72j">
-                                <rect key="frame" x="138" y="568" width="99" height="51"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FP9-sv-eln">
+                                <rect key="frame" x="165" y="795" width="101" height="53"/>
+                                <color key="tintColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                </buttonConfiguration>
                                 <connections>
-                                    <action selector="ButtonDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ILl-8N-3v3"/>
+                                    <action selector="ButtonDidTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="oPJ-sc-uNc"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Csm-9w-uco" customClass="XCamera" customModule="XCameraKit">
+                                <rect key="frame" x="0.0" y="103" width="430" height="600"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="600" id="Zrj-YH-Xat"/>
+                                    <constraint firstAttribute="width" constant="430" id="fgj-Ca-g1u"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Csm-9w-uco" secondAttribute="trailing" id="0kx-9e-EX5"/>
                             <constraint firstItem="Csm-9w-uco" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="6Y9-Io-p77"/>
-                            <constraint firstItem="Fbp-Cq-72j" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="138" id="85X-uT-J04"/>
-                            <constraint firstItem="Csm-9w-uco" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="EX7-I3-V6g"/>
-                            <constraint firstAttribute="trailing" secondItem="Fbp-Cq-72j" secondAttribute="trailing" constant="138" id="avU-KD-bCW"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Fbp-Cq-72j" secondAttribute="bottom" constant="48" id="hbZ-Fe-q7C"/>
-                            <constraint firstItem="Fbp-Cq-72j" firstAttribute="top" secondItem="Csm-9w-uco" secondAttribute="bottom" constant="55" id="k2X-bJ-Q8b"/>
+                            <constraint firstItem="FP9-sv-eln" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="165" id="7xB-H9-LB9"/>
+                            <constraint firstItem="FP9-sv-eln" firstAttribute="top" secondItem="Csm-9w-uco" secondAttribute="bottom" constant="92" id="bNa-t8-Hcu"/>
+                            <constraint firstItem="Csm-9w-uco" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="oL8-D6-8t9"/>
+                            <constraint firstAttribute="trailing" secondItem="FP9-sv-eln" secondAttribute="trailing" constant="164" id="sdb-mX-JhT"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="FP9-sv-eln" secondAttribute="bottom" constant="50" id="yTH-2H-hbB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="gUc-w2-K68">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="flashlight.on.fill" catalog="system" id="lLN-Ig-BVK">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="LightButtonDidTap:" destination="vXZ-lx-hvc" id="Ceb-H8-tVK"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.triangle.2.circlepath.camera.fill" catalog="system" id="y4f-uW-vDN">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="Csm-9w-uco" id="8OZ-oO-hSE"/>
-                        <outlet property="captureButton" destination="Fbp-Cq-72j" id="T7H-LN-iM6"/>
+                        <outlet property="captureButton" destination="FP9-sv-eln" id="eXa-Vq-XRh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="189.59999999999999" y="-36.431784107946029"/>
+            <point key="canvasLocation" x="182.7906976744186" y="-36.051502145922747"/>
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.triangle.2.circlepath.camera.fill" catalog="system" width="128" height="93"/>
+        <image name="flashlight.on.fill" catalog="system" width="78" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -14,16 +14,21 @@ class ViewController: UIViewController {
     @IBOutlet var cameraView: XCamera!
     @IBOutlet var captureButton: UIButton!
     
+    var isOn = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         view.addSubview(cameraView)
-        cameraView.setAspectRatio(.custom(width: 1000, height: 200))
+//        cameraView.setAspectRatio(.custom(width: 1000, height: 200))
+        cameraView.setAspectRatio(.full)
         cameraView.setBackgroundColor(.black)
         cameraView.setFlashMode(.off)
         cameraView.setCameraPosition(.front)
-        cameraView.setCameraCornerRadius(100.0)
+        
+        captureButton.layer.cornerRadius = 50.0
+//        cameraView.setCameraCornerRadius(100.0)
         
         
 //        cameraView.layer.cornerRadius = 20
@@ -50,6 +55,18 @@ class ViewController: UIViewController {
     
     @IBAction func ButtonDidTap(_ sender: Any) {
         print("asdf")
+    }
+    
+    @IBAction func LightButtonDidTap(_ sender: Any) {
+        isOn.toggle()
+        
+        if isOn {
+            cameraView.setFlashMode(.on)
+            print("on")
+        } else {
+            cameraView.setFlashMode(.off)
+            print("off")
+        }
     }
     
 }
