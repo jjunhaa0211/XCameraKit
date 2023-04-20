@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         view.addSubview(cameraView)
-        cameraView.setAspectRatio(.square)
+        cameraView.setAspectRatio(.custom(width: 1000, height: 200))
         cameraView.setBackgroundColor(.black)
         cameraView.setFlashMode(.off)
         cameraView.setCameraPosition(.front)

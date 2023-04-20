@@ -8,6 +8,7 @@ public enum CameraAspectRatio {
     case full // UIView bounds
     case portrait // length 16 : 9
     case landscape // width 16 : 9
+    case custom(width: CGFloat, height: CGFloat) //custom
 }
 
 public enum CameraPosition {
@@ -124,6 +125,8 @@ open class XCamera: UIView {
             size = CGSize(width: bounds.height * 9 / 16, height: bounds.height)
         case .landscape: // width 16 : 9
             size = CGSize(width: bounds.width, height: bounds.width * 3 / 4)
+        case .custom(let width, let height):
+            size = CGSize(width: width, height: height)
         }
         
         let previewLayerFrame = CGRect(origin: .zero, size: size)
