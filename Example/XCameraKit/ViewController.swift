@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         cameraView.setCameraPosition(.front)
         cameraView.setCameraCornerRadius(100.0)
         
+        
 //        cameraView.layer.cornerRadius = 20
 
 
