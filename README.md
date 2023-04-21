@@ -42,6 +42,20 @@
 Getting Started
 -----------
 
+### Info.plist 📄
+
+- **How to allow camera access**:
+
+    ```swift
+    Privacy - Camera Usage Description // To access the camera, you must put it in info 🤙
+    ```
+    
+- **How to allow album access**:
+
+    ```swift
+    Privacy - Photo Library Additions Usage Description //In order to access the album, it is mandatory to put it in info 🤙
+    ```
+
 ### XCamera 📸
 
 - **How to declare camera code**:
