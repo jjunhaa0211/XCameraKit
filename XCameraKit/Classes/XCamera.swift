@@ -21,23 +21,21 @@ enum CameraError: Error {
     case imageData
 }
 
-open class XCamera: UIView {
+open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     let captureSession = AVCaptureSession()
     var cameraDevice: AVCaptureDevice!
     var cameraInput: AVCaptureDeviceInput!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
-    
-    let stillImageOutput = AVCaptureStillImageOutput()
-    
+    private var filter: CIFilter? // filter 멤버 변수 추가
     
     ///Default aspectRation is full
     var aspectRatio: CameraAspectRatio = .full
     
     ///Default flashMode is off
     var flashMode: AVCaptureDevice.FlashMode = .off
-    
+        
     ///Default cameraPosition is .back
     var cameraPosition: CameraPosition = .back {
         didSet {
@@ -66,7 +64,6 @@ open class XCamera: UIView {
             captureSession.commitConfiguration()
         }
     }
-    
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -204,4 +201,26 @@ open class XCamera: UIView {
         previewLayer.masksToBounds = true
     }
     
+    open func setFilter(_ filter: CIFilter?) {
+        if let filter = filter {
+            guard let connection = previewLayer?.connection else { return }
+            connection.videoOrientation = .portrait
+            
+            let newPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            newPreviewLayer.videoGravity = .resizeAspectFill
+            newPreviewLayer.frame = bounds
+            layer.addSublayer(newPreviewLayer)
+            
+            let videoOutput = AVCaptureVideoDataOutput()
+            videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "sample buffer delegate", attributes: []))
+            
+            if captureSession.canAddOutput(videoOutput) {
+                captureSession.addOutput(videoOutput)
+            }
+            
+            self.filter = filter
+        } else {
+            self.filter = nil
+        }
+    }
 }

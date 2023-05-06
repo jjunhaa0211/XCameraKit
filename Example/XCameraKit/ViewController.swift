@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var cameraView: XCamera!
     @IBOutlet var captureButton: UIButton!
-    
+
     var isOn = false
     
     override func viewDidLoad() {
@@ -30,8 +30,12 @@ class ViewController: UIViewController {
         captureButton.layer.cornerRadius = 50.0
 //        cameraView.setCameraCornerRadius(150.0)
         
-        
 //        cameraView.layer.cornerRadius = 20
+        
+        let filter = CIFilter(name: "CIColorMonochrome")!
+        filter.setValue(CIColor(red: 1.0, green: 0.0, blue: 0.0), forKey: "inputColor")
+        filter.setValue(1.0, forKey: "inputIntensity")
+        cameraView.setFilter(filter)
         
         cameraView.startRunning()
 
@@ -74,4 +78,6 @@ class ViewController: UIViewController {
             print("front")
         }
     }
+    
+    
 }
