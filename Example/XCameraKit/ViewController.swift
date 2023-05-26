@@ -38,6 +38,10 @@ class ViewController: UIViewController {
         cameraView.setFilter(filter)
         
         cameraView.startRunning()
+        
+        //Transfer the desired photos to the printer
+//        let imageToPrint = UIImage(named: "aaaa")!
+//        printImageAsPDF(image: imageToPrint)
 
     }
 

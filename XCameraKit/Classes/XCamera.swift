@@ -223,4 +223,31 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
             self.filter = nil
         }
     }
+    
+    func printImageAsPDF(image: UIImage) {
+        let pdfData = NSMutableData()
+        let pdfConsumer = CGDataConsumer(data: pdfData as CFMutableData)!
+        var mediaBox = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+        let pdfContext = CGContext(consumer: pdfConsumer, mediaBox: &mediaBox, nil)!
+        
+        pdfContext.beginPage(mediaBox: &mediaBox)
+        pdfContext.draw(image.cgImage!, in: mediaBox)
+        pdfContext.endPage()
+        pdfContext.closePDF()
+        
+        DispatchQueue.main.async {
+            let printController = UIPrintInteractionController.shared
+            let printInfo = UIPrintInfo.printInfo()
+            printInfo.outputType = .general
+            printInfo.jobName = "Print Job"
+            printController.printInfo = printInfo
+            printController.printingItem = pdfData as Data
+            
+            printController.present(animated: true) { (printController, completed, error) in
+                if let error = error {
+                    print("Printing error: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
 }
