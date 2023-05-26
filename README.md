@@ -112,6 +112,15 @@ Getting Started
     ```swift
     cameraView.setCameraCornerRadius(100.0)
     ```
+ ### printing method 🖨️
+ - **How to convert to pdf and print**:
+
+    ```swift
+    //go to print Options
+    let imageToPrint = UIImage(named: "aaaa")! 
+    printImageAsPDF(image: imageToPrint)
+    ```
+    
     
 ## Author
 
