@@ -30,6 +30,10 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     private var filter: CIFilter? // filter 멤버 변수 추가
     
+    private let minimumZoom: CGFloat = 1.0
+    private let maximumZoom: CGFloat = 5.0
+    private var lastZoomFactor: CGFloat = 1.0
+    
     ///Default aspectRation is full
     var aspectRatio: CameraAspectRatio = .full
     
@@ -250,4 +254,52 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
             }
         }
     }
+    
+    public func handleZoomGesture(pinchGesture: UIPinchGestureRecognizer) -> Double {
+        func calculateZoomFactor(factor: CGFloat) -> CGFloat {
+            let minZoomFactor = min(min(max(factor, minimumZoom), maximumZoom), cameraDevice?.activeFormat.videoMaxZoomFactor ?? 1.0)
+            return minZoomFactor
+        }
+        
+        func updateZoom(factor: CGFloat) {
+            guard let device = cameraDevice else {
+                return
+            }
+            
+            do {
+                try device.lockForConfiguration()
+                defer {
+                    device.unlockForConfiguration()
+                }
+                
+                device.videoZoomFactor = factor
+            } catch {
+                print("Error updating zoom: \(error.localizedDescription)")
+            }
+        }
+        
+        let newScaleFactor = calculateZoomFactor(factor: pinchGesture.scale * lastZoomFactor)
+        
+        switch pinchGesture.state {
+        case .began, .changed:
+            updateZoom(factor: newScaleFactor)
+            
+        case .ended:
+            lastZoomFactor = calculateZoomFactor(factor: newScaleFactor)
+            updateZoom(factor: lastZoomFactor)
+            
+        default:
+            break
+        }
+        
+        return Double(newScaleFactor).rounded(places: 1)
+    }
 }
+
+extension Double {
+    public func rounded(places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self*divisor).rounded() / divisor
+    }
+}
+

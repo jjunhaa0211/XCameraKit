@@ -37,12 +37,16 @@ class ViewController: UIViewController {
         filter.setValue(1.0, forKey: "inputIntensity")
         cameraView.setFilter(filter)
         
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
+        cameraView.addGestureRecognizer(pinchGesture)
+        
         cameraView.startRunning()
         
         //Transfer the desired photos to the printer
 //        let imageToPrint = UIImage(named: "aaaa")!
 //        printImageAsPDF(image: imageToPrint)
 
+    
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -83,5 +87,9 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    @objc func handlePinchGesture(_ gesture: UIPinchGestureRecognizer) {
+        // cameraZoomPinchAction 함수 호출
+        let zoomFactor = cameraView.handleZoomGesture(pinchGesture: gesture)
+        print("Zoom factor: \(zoomFactor)")
+    }
 }
