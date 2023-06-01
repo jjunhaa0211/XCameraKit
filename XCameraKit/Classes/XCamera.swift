@@ -228,6 +228,9 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
     
+    /// Print the image as a PDF and present a print controller to print the document.
+    /// - Parameters:
+    ///   - image: The image to be printed as a PDF.
     func printImageAsPDF(image: UIImage) {
         let pdfData = NSMutableData()
         let pdfConsumer = CGDataConsumer(data: pdfData as CFMutableData)!
@@ -255,6 +258,9 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
     
+    /// Handle pinch gesture to control the zoom level of the camera.
+    /// - Parameter pinchGesture: The UIPinchGestureRecognizer for zoom control.
+    /// - Returns: The new zoom level as a rounded double value.
     public func handleZoomGesture(pinchGesture: UIPinchGestureRecognizer) -> Double {
         func calculateZoomFactor(factor: CGFloat) -> CGFloat {
             let minZoomFactor = min(min(max(factor, minimumZoom), maximumZoom), cameraDevice?.activeFormat.videoMaxZoomFactor ?? 1.0)

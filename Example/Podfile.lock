@@ -1,0 +1,16 @@
+PODS:
+  - XCameraKit (0.1.0)
+
+DEPENDENCIES:
+  - XCameraKit (from `../`)
+
+EXTERNAL SOURCES:
+  XCameraKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  XCameraKit: 4339c871453d94d7375b00566bea13011e4158dd
+
+PODFILE CHECKSUM: 8e37d68d0c7363a4dbb772585a5f538f253e68e0
+
+COCOAPODS: 1.12.0

@@ -92,4 +92,5 @@ class ViewController: UIViewController {
         let zoomFactor = cameraView.handleZoomGesture(pinchGesture: gesture)
         print("Zoom factor: \(zoomFactor)")
     }
+
 }
