@@ -23,24 +23,18 @@ class ViewController: UIViewController {
         
         view.addSubview(cameraView)
 //        cameraView.setAspectRatio(.custom(width: 1000, height: 200))
-        cameraView.setAspectRatio(.landscape)
+        cameraView.setAspectRatio(.square)
         cameraView.setBackgroundColor(.white)
         cameraView.setFlashMode(.off)
         cameraView.setCameraPosition(.back)
         
         gridView = GridView(frame: cameraView.frame)
-        gridView.isUserInteractionEnabled = true
+        gridView.isUserInteractionEnabled = false
         view.addSubview(gridView)
         
         captureButton.layer.cornerRadius = 50.0
 //        cameraView.setCameraCornerRadius(150.0)
-        
 //        cameraView.layer.cornerRadius = 20
-        
-        let filter = CIFilter(name: "CIColorMonochrome")!
-        filter.setValue(CIColor(red: 1.0, green: 0.0, blue: 0.0), forKey: "inputColor")
-        filter.setValue(1.0, forKey: "inputIntensity")
-        cameraView.setFilter(filter)
         
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
         cameraView.addGestureRecognizer(pinchGesture)
@@ -50,14 +44,14 @@ class ViewController: UIViewController {
         //Transfer the desired photos to the printer
 //        let imageToPrint = UIImage(named: "aaaa")!
 //        printImageAsPDF(image: imageToPrint)
-
+        updateGridViewSize()
     
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        gridView.frame = cameraView.frame
+        updateGridViewSize()
     }
 
 
@@ -70,6 +64,14 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func updateGridViewSize() {
+        let cameraViewSize = cameraView.frame.size
+        let gridSize = CGSize(width: cameraViewSize.width, height: cameraViewSize.width)
+        let gridOrigin = CGPoint(x: cameraView.frame.origin.x, y: cameraView.frame.origin.y + (cameraViewSize.height - gridSize.height) / 2)
+        gridView.frame = CGRect(origin: gridOrigin, size: gridSize)
+    }
+    
     
     @IBAction func ButtonDidTap(_ sender: Any) {
         print("capture")
