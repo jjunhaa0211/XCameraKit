@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0002CA3AA0B949D73E2445C5DBA90FA7 /* Pods-XCameraKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A59339F9235D096D28062A5D6A974 /* Pods-XCameraKit_Example-dummy.m */; };
 		05C67F1149053FAA8FC45168B01ED58F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		0EF1201B2A30471D00D8640F /* XGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF1201A2A30471D00D8640F /* XGridView.swift */; };
 		1E2A71D962802E7F8AD78D652913D512 /* Pods-XCameraKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 629C71AF9DFC90D1A21D1119871CAE9B /* Pods-XCameraKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		31074B98DA65B09BE0B98A3B0535F5B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		39954EF3CF630F18B374E9CB4A623508 /* XCameraKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AEE25E460A1D5227C06CCEF79529515 /* XCameraKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		020D438208163089FCD3CC01638FA27D /* Pods-XCameraKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XCameraKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		0EF1201A2A30471D00D8640F /* XGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGridView.swift; sourceTree = "<group>"; };
 		1699E7A6890874949A21D08C6F78D858 /* Pods-XCameraKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-XCameraKit_Tests.modulemap"; sourceTree = "<group>"; };
 		19D51E5E534C98E906502A41A4272735 /* Pods_XCameraKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XCameraKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CA06BF87CD9B046970F8FD7638D8698 /* Pods-XCameraKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-XCameraKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				353D04D2A49D813FA1DC135B9228783D /* XCamera.swift */,
+				0EF1201A2A30471D00D8640F /* XGridView.swift */,
 				5671FD739707848D3278CABB0276729A /* Pod */,
 				42662C3FC5953203230AEB2DB5DCDF2C /* Support Files */,
 			);
@@ -377,6 +380,7 @@
 			files = (
 				9523BD6C02012DAADBF6EFF680516BCF /* XCamera.swift in Sources */,
 				601CC408B2E2534A24398B413AD50437 /* XCameraKit-dummy.m in Sources */,
+				0EF1201B2A30471D00D8640F /* XGridView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
