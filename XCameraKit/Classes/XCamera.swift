@@ -104,7 +104,7 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
         do {
             cameraInput = try AVCaptureDeviceInput(device: cameraDevice)
         } catch let error {
-            print("Error creating AVCaptureDeviceInput: \(error.localizedDescription)")
+            print("\(XCameraKitError.XCameraError(condition: .noCapturing).errorDescription) , reason: \(error.localizedDescription)")
             return
         }
         
@@ -195,7 +195,7 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
             photoSettings.flashMode = mode
             device.unlockForConfiguration()
         } catch {
-            print("Error setting flash mode: \(error.localizedDescription)")
+            print("\(XCameraKitError.XCameraError(condition: .noFlash).errorDescription) ,reason: \(error.localizedDescription)")
         }
     }
     
@@ -239,7 +239,7 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
             
             printController.present(animated: true) { (printController, completed, error) in
                 if let error = error {
-                    print("Printing error: \(error.localizedDescription)")
+                    print("\(XCameraKitError.XPrinterError(condition: .noprinter).errorDescription), reason: \(error.localizedDescription)")
                 }
             }
         }
@@ -267,7 +267,7 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
                 
                 device.videoZoomFactor = factor
             } catch {
-                print("Error updating zoom: \(error.localizedDescription)")
+                print("\(XCameraKitError.XCameraError(condition: .noZoom).errorDescription), reason: \(error.localizedDescription)")
             }
         }
         
@@ -305,48 +305,44 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
         self.captureCompletion = completion
     }
     
-    // Add tap gesture recognizer to the view
+    //  You can take a photo by touching only when allow is true.
     public func addTapGesture(allow: Bool = false) {
         if allow == true {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
             self.addGestureRecognizer(tapGesture)
         } else {
-            print("not working")
+            print(XCameraKitError.XCameraError(condition: .noWorking).errorDescription)
         }
     }
     
+    // Handler that fires when the image is clicked
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         if gesture.state == .ended {
             capturePhoto { result in
                 switch result {
                 case .success(let capturedImage):
-                    print("Image captured")
                     self.savePhotoToLibrary(image: capturedImage)
                 case .failure(let error):
-                    print("Error capturing image: \(error)")
+                    print("\(XCameraKitError.XAlbumError(condition: .saveError).errorDescription) ,reason: \(error)")
                 }
             }
         }
     }
+    
+    //Code to save to image album
     private func savePhotoToLibrary(image: UIImage) {
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
+    
+    // Code to tell if the image was saved successfully
     @objc private func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
-            print("👎 Error saving image: \(error)")
+            print("\(XCameraKitError.XAlbumError(condition: .saveError).errorDescription), reason:\(error)")
         } else {
             print("✌️ Image saved successfully ✌️")
         }
     }
 }
-
-extension Double {
-    public func rounded(places: Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return (self*divisor).rounded() / divisor
-    }
-}
-
 
 // AVCapturePhotoCaptureDelegate
 extension XCamera: AVCapturePhotoCaptureDelegate {
@@ -368,4 +364,9 @@ extension XCamera: AVCapturePhotoCaptureDelegate {
     }
 }
 
-
+extension Double {
+    public func rounded(places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self*divisor).rounded() / divisor
+    }
+}
