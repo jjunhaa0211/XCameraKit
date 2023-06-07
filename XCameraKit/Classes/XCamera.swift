@@ -28,9 +28,9 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
     var cameraInput: AVCaptureDeviceInput!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var stillImageOutput: AVCapturePhotoOutput!
-    var captureCompletion: ((Result<UIImage, Error>) -> Void)? // 사진 캡처 완료 핸들러
+    var captureCompletion: ((Result<UIImage, Error>) -> Void)? // Photo capture completion handler
     
-    private var filter: CIFilter? // filter 멤버 변수 추가
+    private var filter: CIFilter?
     
     private let minimumZoom: CGFloat = 1.0
     private let maximumZoom: CGFloat = 5.0
@@ -113,7 +113,7 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
         previewLayer.videoGravity = .resizeAspectFill
         layer.addSublayer(previewLayer)
         
-        // 사진 캡처를 위한 AVCapturePhotoOutput 초기화
+        // Initialize AVCapturePhotoOutput for photo capture
         stillImageOutput = AVCapturePhotoOutput()
         if captureSession.canAddOutput(stillImageOutput) {
             captureSession.addOutput(stillImageOutput)
@@ -213,29 +213,6 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
     open func setCameraCornerRadius(_ radius: CGFloat) {
         previewLayer.cornerRadius = radius
         previewLayer.masksToBounds = true
-    }
-    
-    open func setFilter(_ filter: CIFilter?) {
-        if let filter = filter {
-            guard let connection = previewLayer?.connection else { return }
-            connection.videoOrientation = .portrait
-            
-            let newPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            newPreviewLayer.videoGravity = .resizeAspectFill
-            newPreviewLayer.frame = bounds
-            layer.addSublayer(newPreviewLayer)
-            
-            let videoOutput = AVCaptureVideoDataOutput()
-            videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "sample buffer delegate", attributes: []))
-            
-            if captureSession.canAddOutput(videoOutput) {
-                captureSession.addOutput(videoOutput)
-            }
-            
-            self.filter = filter
-        } else {
-            self.filter = nil
-        }
     }
     
     /// Print the image as a PDF and present a print controller to print the document.
