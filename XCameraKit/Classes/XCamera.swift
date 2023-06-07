@@ -27,6 +27,8 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
     var cameraDevice: AVCaptureDevice!
     var cameraInput: AVCaptureDeviceInput!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    var stillImageOutput: AVCapturePhotoOutput!
+    var captureCompletion: ((Result<UIImage, Error>) -> Void)? // 사진 캡처 완료 핸들러
     
     private var filter: CIFilter? // filter 멤버 변수 추가
     
@@ -39,7 +41,7 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     ///Default flashMode is off
     var flashMode: AVCaptureDevice.FlashMode = .off
-        
+    
     ///Default cameraPosition is .back
     var cameraPosition: CameraPosition = .back {
         didSet {
@@ -108,6 +110,12 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.videoGravity = .resizeAspectFill
         layer.addSublayer(previewLayer)
+        
+        // 사진 캡처를 위한 AVCapturePhotoOutput 초기화
+        stillImageOutput = AVCapturePhotoOutput()
+        if captureSession.canAddOutput(stillImageOutput) {
+            captureSession.addOutput(stillImageOutput)
+        }
     }
     
     public override func layoutSubviews() {
@@ -138,7 +146,7 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     open func startRunning() {
-//        AVCaptureDeviceInput, AVCaptureSessioning != AVCaptureSession start
+        //        AVCaptureDeviceInput, AVCaptureSessioning != AVCaptureSession start
         if cameraInput != nil && !captureSession.isRunning {
             captureSession.beginConfiguration()
             captureSession.sessionPreset = .high
@@ -300,6 +308,23 @@ open class XCamera: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
         
         return Double(newScaleFactor).rounded(places: 1)
     }
+    
+    /// Capture photos using current camera settings.
+    /// - Parameter completion: A completion handler that returns either a captured image or an error.
+    open func capturePhoto(completion: @escaping (Result<UIImage, Error>) -> Void) {
+        guard let connection = stillImageOutput.connection(with: .video) else {
+            completion(.failure(CameraError.captureStillImageOutput))
+            return
+        }
+        
+        let photoSettings = AVCapturePhotoSettings()
+        photoSettings.flashMode = flashMode
+        
+        stillImageOutput.capturePhoto(with: photoSettings, delegate: self)
+        
+        // AVCapturePhotoCaptureDelegate
+        self.captureCompletion = completion
+    }
 }
 
 extension Double {
@@ -308,4 +333,78 @@ extension Double {
         return (self*divisor).rounded() / divisor
     }
 }
+
+
+// AVCapturePhotoCaptureDelegate
+extension XCamera: AVCapturePhotoCaptureDelegate {
+    public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if let error = error {
+            captureCompletion?(.failure(error))
+            captureCompletion = nil
+            return
+        }
+        
+        guard let imageData = photo.fileDataRepresentation(), let capturedImage = UIImage(data: imageData) else {
+            captureCompletion?(.failure(CameraError.imageData))
+            captureCompletion = nil
+            return
+        }
+        
+        captureCompletion?(.success(capturedImage))
+        captureCompletion = nil
+    }
+}
+
+import UIKit
+
+open class GridView: UIView {
+    
+    open override func draw(_ rect: CGRect) {
+        print("draw func has called: \(bounds)")
+
+        // Drawing code
+        let borderLayer = gridLayer()
+        borderLayer.path = UIBezierPath(rect: self.bounds).cgPath
+        layer.addSublayer(borderLayer)
+        
+        let firstColumnPath = UIBezierPath()
+        firstColumnPath.move(to: CGPoint(x: bounds.width / 3, y: 0))
+        firstColumnPath.addLine(to: CGPoint(x: bounds.width / 3, y: bounds.height))
+        let firstColumnLayer = gridLayer()
+        firstColumnLayer.path = firstColumnPath.cgPath
+        layer.addSublayer(firstColumnLayer)
+        
+        let secondColumnPath = UIBezierPath()
+        secondColumnPath.move(to: CGPoint(x: (2 * bounds.width) / 3, y: 0))
+        secondColumnPath.addLine(to: CGPoint(x: (2 * bounds.width) / 3, y: bounds.height))
+        let secondColumnLayer = gridLayer()
+        secondColumnLayer.path = secondColumnPath.cgPath
+        layer.addSublayer(secondColumnLayer)
+        
+        let firstRowPath = UIBezierPath()
+        firstRowPath.move(to: CGPoint(x: 0, y: bounds.height / 3))
+        firstRowPath.addLine(to: CGPoint(x: bounds.width, y: bounds.height / 3))
+        let firstRowLayer = gridLayer()
+        firstRowLayer.path = firstRowPath.cgPath
+        layer.addSublayer(firstRowLayer)
+        
+        let secondRowPath = UIBezierPath()
+        secondRowPath.move(to: CGPoint(x: 0, y: ( 2 * bounds.height) / 3))
+        secondRowPath.addLine(to: CGPoint(x: bounds.width, y: ( 2 * bounds.height) / 3))
+        let secondRowLayer = gridLayer()
+        secondRowLayer.path = secondRowPath.cgPath
+        layer.addSublayer(secondRowLayer)
+    }
+    
+    func gridLayer() -> CAShapeLayer {
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.strokeColor = UIColor.black.cgColor
+        shapeLayer.lineDashPattern = [1, 1]
+        shapeLayer.frame = bounds
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        // 클리어로 채우기 구현하지 않고, 스토리보드의 이미지 뷰의 투명도를 조절했습니다.
+        return shapeLayer
+    }
+}
+
 

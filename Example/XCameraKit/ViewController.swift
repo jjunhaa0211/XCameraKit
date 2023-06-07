@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var cameraView: XCamera!
     @IBOutlet var captureButton: UIButton!
+    var gridView: GridView!
 
     var isOn = false
     
@@ -26,6 +27,10 @@ class ViewController: UIViewController {
         cameraView.setBackgroundColor(.white)
         cameraView.setFlashMode(.off)
         cameraView.setCameraPosition(.back)
+        
+        gridView = GridView(frame: cameraView.frame)
+        gridView.isUserInteractionEnabled = true
+        view.addSubview(gridView)
         
         captureButton.layer.cornerRadius = 50.0
 //        cameraView.setCameraCornerRadius(150.0)
@@ -48,6 +53,13 @@ class ViewController: UIViewController {
 
     
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        gridView.frame = cameraView.frame
+    }
+
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -61,6 +73,17 @@ class ViewController: UIViewController {
     
     @IBAction func ButtonDidTap(_ sender: Any) {
         print("capture")
+        cameraView.capturePhoto { result in
+            switch result {
+            case .success(let image):
+                print("사진 저장")
+                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                break
+            case .failure(let error):
+                print("저장 실패 \(error)")
+                break
+            }
+        }
     }
     
     @IBAction func LightButtonDidTap(_ sender: Any) {
