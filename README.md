@@ -6,8 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/XCameraKit.svg?style=flat)](https://cocoapods.org/pods/XCameraKit)
 
 ## Screenshots
-
-![fjkgdhsa](https://user-images.githubusercontent.com/102890390/233331775-52d6fd56-7904-4aae-9af4-11d1ef35554d.jpg)
+    ⚠️ preparing! ⚠️
 
 
 ## Support Function
