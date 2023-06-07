@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var gridView: GridView!
 
     var isOn = false
+    var gridOn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +73,10 @@ class ViewController: UIViewController {
         gridView.frame = CGRect(origin: gridOrigin, size: gridSize)
     }
     
+    @IBAction func GridButtonDidTap(_ sender: Any) {
+        gridOn.toggle()
+        gridView.isHidden = !gridOn
+    }
     
     @IBAction func ButtonDidTap(_ sender: Any) {
         print("capture")
