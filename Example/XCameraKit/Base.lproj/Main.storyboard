@@ -70,12 +70,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gUc-w2-K68">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="flashlight.on.fill" catalog="system" id="lLN-Ig-BVK">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="LightButtonDidTap:" destination="vXZ-lx-hvc" id="Ceb-H8-tVK"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Item" image="flashlight.on.fill" catalog="system" id="lLN-Ig-BVK">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="LightButtonDidTap:" destination="vXZ-lx-hvc" id="Ceb-H8-tVK"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="hand.point.up.left.fill" catalog="system" id="mS7-4i-pHB">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="TouchShootButtonDidTap:" destination="vXZ-lx-hvc" id="EhE-ma-ccz"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="arrow.triangle.2.circlepath.camera.fill" catalog="system" id="y4f-uW-vDN">
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -105,6 +113,7 @@
         <image name="arrow.triangle.2.circlepath.camera.fill" catalog="system" width="128" height="93"/>
         <image name="flashlight.on.fill" catalog="system" width="78" height="128"/>
         <image name="grid" catalog="system" width="128" height="113"/>
+        <image name="hand.point.up.left.fill" catalog="system" width="120" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

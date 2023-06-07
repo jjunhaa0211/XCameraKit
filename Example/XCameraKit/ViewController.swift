@@ -13,10 +13,11 @@ class ViewController: UIViewController {
     
     @IBOutlet var cameraView: XCamera!
     @IBOutlet var captureButton: UIButton!
-    var gridView: GridView!
+    var gridView: XGridView!
 
     var isOn = false
     var gridOn = false
+    var touchShootOn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,7 @@ class ViewController: UIViewController {
         cameraView.setFlashMode(.off)
         cameraView.setCameraPosition(.back)
         
-        gridView = GridView(frame: cameraView.frame)
+        gridView = XGridView(frame: cameraView.frame)
         gridView.isUserInteractionEnabled = false
         view.addSubview(gridView)
         
@@ -46,7 +47,7 @@ class ViewController: UIViewController {
 //        let imageToPrint = UIImage(named: "aaaa")!
 //        printImageAsPDF(image: imageToPrint)
         updateGridViewSize()
-    
+            
     }
     
     override func viewDidLayoutSubviews() {
@@ -102,6 +103,18 @@ class ViewController: UIViewController {
         } else {
             cameraView.setFlashMode(.off)
             print("off")
+        }
+    }
+    
+    @IBAction func TouchShootButtonDidTap(_ sender: Any) {
+        touchShootOn.toggle()
+        
+        if touchShootOn {
+            cameraView.addTapGesture(allow: false)
+            print("실행하지 않음")
+        } else {
+            cameraView.addTapGesture(allow: true)
+            print("실행")
         }
     }
     
