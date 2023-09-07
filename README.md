@@ -7,7 +7,7 @@
 
 #sorry
 ```ruby
-2023/8/13~2023/8/20 We will stop the service until
+ We will stop the service until
 ```
 
 ## Screenshots
