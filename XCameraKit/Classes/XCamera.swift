@@ -370,3 +370,156 @@ extension Double {
         return (self*divisor).rounded() / divisor
     }
 }
+
+public enum XCameraKitError: Error {
+    case XCameraError(condition: XCameraError)
+    case XFilterError(condition: XFilterError)
+    case XVideoError(condition: XVideoError)
+    case XAlbumError(condition: XAlbum)
+    case XPrinterError(condition: XPrinter)
+}
+
+public enum XCameraError {
+    case noCamera
+    case noWorking
+    case noCapturing
+    case noPermission
+    case noZoom
+    case noFlash
+    case noTransform
+}
+
+public enum XFilterError {
+    case filterFailed
+    case noWorking
+    case noPermission
+}
+
+public enum XVideoError {
+    case noVideo
+    case noWorking
+    case noPermission
+}
+
+public enum XAlbum {
+    case saveError
+    case noWorking
+    case noPermission
+}
+
+public enum XPrinter {
+    case noprinter
+    case noWorking
+    case noPermission
+}
+
+extension XCameraKitError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .XCameraError(let condition):
+            switch condition {
+            case .noCamera:
+                return "The camera is not functioning."
+            case .noWorking:
+                return "The camera is working but not capturing."
+            case .noCapturing:
+                return "Unable to capture photos."
+            case .noPermission:
+                return "No permission to access the camera."
+            case .noZoom:
+                return "Unable to zoom the camera."
+            case .noFlash:
+                return "Unable to activate the camera's flash."
+            case .noTransform:
+                return "Unable to rotate the camera's orientation."
+            }
+        case .XFilterError(let condition):
+            switch condition {
+            case .filterFailed:
+                return "Failed to apply filters."
+            case .noWorking:
+                return "Filters applied, but no changes were made."
+            case .noPermission:
+                return "No permission to apply filters."
+            }
+        case .XVideoError(let condition):
+            switch condition {
+            case .noVideo:
+                return "Video is not functioning."
+            case .noWorking:
+                return "Video is working but not capturing."
+            case .noPermission:
+                return "No permission to access the video."
+            }
+        case .XAlbumError(let condition):
+            switch condition {
+            case .saveError:
+                return "Unable to save the photo."
+            case .noWorking:
+                return "Unable to save photos."
+            case .noPermission:
+                return "No permission to save photos."
+            }
+        case .XPrinterError(let condition):
+            switch condition {
+            case .noprinter:
+                return "Unable to print."
+            case .noWorking:
+                return "Unable to perform printing operation."
+            case .noPermission:
+                return "No permission to access the printer."
+            }
+        }
+    }
+}
+
+open class XGridView: UIView {
+    
+    open override func draw(_ rect: CGRect) {
+        print("draw func has called: \(bounds)")
+
+        // Drawing code
+        let borderLayer = gridLayer()
+        borderLayer.path = UIBezierPath(rect: self.bounds).cgPath
+        layer.addSublayer(borderLayer)
+        
+        let firstColumnPath = UIBezierPath()
+        firstColumnPath.move(to: CGPoint(x: bounds.width / 3, y: 0))
+        firstColumnPath.addLine(to: CGPoint(x: bounds.width / 3, y: bounds.height))
+        let firstColumnLayer = gridLayer()
+        firstColumnLayer.path = firstColumnPath.cgPath
+        layer.addSublayer(firstColumnLayer)
+        
+        let secondColumnPath = UIBezierPath()
+        secondColumnPath.move(to: CGPoint(x: (2 * bounds.width) / 3, y: 0))
+        secondColumnPath.addLine(to: CGPoint(x: (2 * bounds.width) / 3, y: bounds.height))
+        let secondColumnLayer = gridLayer()
+        secondColumnLayer.path = secondColumnPath.cgPath
+        layer.addSublayer(secondColumnLayer)
+        
+        let firstRowPath = UIBezierPath()
+        firstRowPath.move(to: CGPoint(x: 0, y: bounds.height / 3))
+        firstRowPath.addLine(to: CGPoint(x: bounds.width, y: bounds.height / 3))
+        let firstRowLayer = gridLayer()
+        firstRowLayer.path = firstRowPath.cgPath
+        layer.addSublayer(firstRowLayer)
+        
+        let secondRowPath = UIBezierPath()
+        secondRowPath.move(to: CGPoint(x: 0, y: ( 2 * bounds.height) / 3))
+        secondRowPath.addLine(to: CGPoint(x: bounds.width, y: ( 2 * bounds.height) / 3))
+        let secondRowLayer = gridLayer()
+        secondRowLayer.path = secondRowPath.cgPath
+        layer.addSublayer(secondRowLayer)
+    }
+    
+    func gridLayer() -> CAShapeLayer {
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.strokeColor = UIColor.black.cgColor
+        shapeLayer.lineDashPattern = [1, 1]
+        shapeLayer.frame = bounds
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        return shapeLayer
+    }
+}
+
+
