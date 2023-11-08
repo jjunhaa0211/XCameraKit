@@ -1,21 +1,23 @@
-// swift-tools-version:5.9
+// swift-tools-version: 5.9
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "XCameraKit",
-    platforms: [
-        .iOS(.v13)
-    ],
     products: [
-        .library(name: "XCameraKit",
-                 targets: ["XCameraKit"])
+        // Products define the executables and libraries a package produces, making them visible to other packages.
+        .library(
+            name: "XCameraKit",
+            targets: ["XCameraKit"]),
     ],
     targets: [
-        .target(name: "XCameraKit",
-                path: "XCameraKit/Classes")
-    ],
-    swiftLanguageVersions: [
-        .v5
+        // Targets are the basic building blocks of a package, defining a module or a test suite.
+        // Targets can depend on other targets in this package and products from dependencies.
+        .target(
+            name: "XCameraKit"),
+        .testTarget(
+            name: "XCameraKitTests",
+            dependencies: ["XCameraKit"]),
     ]
 )
