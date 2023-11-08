@@ -40,7 +40,7 @@
 
     ```swift
   let spm = SwiftPackageManagerDependencies([
-    .remote(url: "https://github.com/jjunhaa0211/XCameraKit", requirement: .upToNextMinor(from: "1.1.1"))
+      .remote(url: "https://github.com/jjunhaa0211/XCameraKit", requirement: .upToNextMinor(from: "1.1.1"))
   ])
     ```
 
