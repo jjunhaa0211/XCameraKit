@@ -4,7 +4,6 @@
 [![License](https://img.shields.io/cocoapods/l/XCameraKit.svg?style=flat)](https://cocoapods.org/pods/XCameraKit)
 [![Platform](https://img.shields.io/cocoapods/p/XCameraKit.svg?style=flat)](https://cocoapods.org/pods/XCameraKit)
 
-#sorry
 ```ruby
  We will stop the service until
 ```
@@ -25,7 +24,7 @@
 - **For iOS 14+ projects:** 😈
 
     ```ruby
-    pod 'XCameraKit'
+    🙏 Please wait
     ```
     
 ## Carthage: 
